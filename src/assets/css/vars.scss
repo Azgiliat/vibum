@@ -1,0 +1,10 @@
+$mobile-width: 414px;
+$laptop-width: 960px;
+$desktop-width: 1920px;
+$mobile: '(min-width: #{$mobile-width})';
+$laptop: '(min-width: #{$laptop-width})';
+$desktop: '(min-width: #{$desktop-width})';
+
+//colors
+$violet-iris: #7045C4;
+
