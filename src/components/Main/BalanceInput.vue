@@ -1,10 +1,10 @@
 <template>
   <div class="balance-input">
     <div class="container">
-      <p class="balance-input__text cab-h3 cab-h3-16">
+      <p class="balance-input__text cab-h3 cab-h3--16">
         Введите сумму, чтобы увидеть прогноз по подписчикам и просмотрам
       </p>
-      <CurrencyInput :currency="currency"/>
+      <CurrencyInput :currency="currency" :value="balance" @update:value="$emit('update:balance', $event)"/>
     </div>
   </div>
 </template>
@@ -22,11 +22,23 @@ export default {
       type: String,
       require: false,
       default: 'RUB'
+    },
+    balance: {
+      type: String,
+      require: true
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.balance-input {
+  background-color: $grey-minor;
+  padding: 24px 0 30px 0;
 
+  &__text {
+    width: 282px;
+    margin: 0 auto 30px 0;
+  }
+}
 </style>

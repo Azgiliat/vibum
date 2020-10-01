@@ -4,7 +4,35 @@ $desktop-width: 1920px;
 $mobile: '(min-width: #{$mobile-width})';
 $laptop: '(min-width: #{$laptop-width})';
 $desktop: '(min-width: #{$desktop-width})';
-
+$mobile-content-width: 90%;
+//fonts
+$main-font: PT Sans;
+$second-font: Montserrat;
+//transition
+$transition: 0.3s easy-in-out;
 //colors
+$violet-lilac: #BC9AF4;
 $violet-iris: #7045C4;
+$black-main: #212121;
+$black-metal: #323232;
+$black-text: #4B4B4B;
+$grey-minor: #E2E5EE;
+$grey-body-landing: #505361;
+
+//gradiet settings
+$chart-gradient-start: rgba(142, 86, 233, 0.31);
+$chart-gradient-finish: rgba(142, 86, 233, 0);
+$chart-gradient-angle: -150;
+
+:export {
+  violetIris: $violet-iris;
+  mainBlack: $black-main;
+  greyMinor: $grey-minor;
+  chartGradientStart: $chart-gradient-start;
+  chartGradientFinish: $chart-gradient-finish;
+  chartGradientAngle: $chart-gradient-angle;
+  mobileWidth: $mobile-width;
+  laptopWidth: $laptop-width;
+  desktopWidth: $desktop-width;
+}
 

@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.container {
+  width: $mobile-content-width;
+  margin: 0 auto;
+}

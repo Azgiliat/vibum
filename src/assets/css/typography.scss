@@ -1,42 +1,74 @@
 //styleName: $m-landing-body-second/ 15;
 .landing-body-second {
-  font-family: Montserrat;
+  font-family: $second-font;
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0em;
   text-align: center;
+  color: $grey-body-landing;
 
-  &-15 {
+  &--15 {
     font-size: 15px;
     line-height: 25px;
   }
 }
 
+//styleName: $m-landing-body-first/ 15;
+.landing-body-first {
+  font-family: $second-font;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &--15 {
+    line-height: 26px;
+    font-size: 15px;
+  }
+}
+
 //styleName: $m-landing-h1-mobile/ 32;
 .landing-h1 {
-  font-family: PT Sans;
+  font-family: $main-font;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-align: center;
+  color: $black-main;
 
-  &-32 {
+  &--32 {
     font-size: 32px;
     line-height: 42px;
   }
 }
 //styleName: $m-cab-h3-mobile / 16 reg;
 .cab-h3 {
-  font-family: PT Sans;
+  font-family: $main-font;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-align: left;
+  color: $black-main;
 
-  &-16 {
+  &--16 {
     font-size: 16px;
     line-height: 20px;
   }
 }
+
+//styleName: $m-cab-h1-mobile / 21;
+.cab-h1 {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: left;
+
+  &--21 {
+    font-size: 21px;
+    line-height: 26px;
+  }
+}
+
 
 

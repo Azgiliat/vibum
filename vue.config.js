@@ -2,11 +2,20 @@ const path = require('path')
 
 module.exports = {
   chainWebpack: config => {
-    config.resolve.alias.set('st', path.resolve(__dirname, './src/static'));
+    config.resolve.alias.set('st', path.resolve(__dirname, 'src/static'));
     ['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(rule => {
       config.module
         .rule('scss')
         .oneOf(rule)
+        .use('style-resource')
+        .loader('style-resources-loader')
+        .options({
+          patterns: [
+            path.resolve(__dirname, 'src/assets/css/vars.scss')
+          ]
+        })
+        .before('resolve-url-loader')
+        .end()
         .use('resolve-url-loader')
         .loader('resolve-url-loader')
         .options({
