@@ -8,3 +8,19 @@ $font-weights: ("Light": 300, "Regular": 400, "Medium": 500, "SemiBold": 600, "B
     src: local('Montserrat'), url('~st/fonts/Montserrat-#{$name}.woff2') format('woff2'), url('~st/fonts/Montserrat-#{$name}.woff') format('woff'), url('~st/fonts/Montserrat-#{$name}.ttf') format('truetype');
   }
 }
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('PT Sans'), url('~st/fonts/PTSans-Bold.woff2') format('woff2'), url('~st/fonts/PTSans-Bold.woff') format('woff'), url('~st/fonts/PTSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('PT Sans'), url('~st/fonts/PTSans-Regular.woff2') format('woff2'), url('~st/fonts/PTSans-Regular.woff') format('woff'), url('~st/fonts/PTSans-Regular.ttf') format('truetype');
+}

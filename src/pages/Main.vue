@@ -1,10 +1,10 @@
 <template>
   <section class="main">
-    <div class="content">
-      <h1 class="main__header landing-h1 landing-h1--32 container">
+    <div class="content main__content">
+      <h1 class="main__header landing-h1 container">
         Прогноз продвижения
       </h1>
-      <p class="main__description landing-body-second landing-body-second--15 container">
+      <p class="main__description landing-body-second container">
         Мы пользуемся только официальными инструментами рекламы, рекомендуемыми самим YouTube, поэтому все приведенные
         нами просмотры, лайки и комментарии будут настоящими, а подписчики живыми и заинтересованными в тематике Вашего
         канала
@@ -28,88 +28,46 @@
       </div>
       <div class="main__chart">
         <div class="container">
-          <Chart ref="chart" :chartData="chartData" :width="chartWidth" :height="chartHeight" :styles="chartStyles"/>
+          <span class="main__chart-title .cab-text-reg">
+            Подписчики
+          </span>
+          <FollowersChart :days="days" :balance="balance "/>
         </div>
+      </div>
+      <div class="main__bottom container">
+        <p class="main__bottom-text cab-body-main">
+          Прогноз подписчиков зависит от Вашего контента. Сделайте его интересным и старайтесь не снижайть планку
+        </p>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import DifferenceBlock from '@/components/UI/DifferenceBlock'
-import followersAmount from '@/utils/followersAmount'
-import Chart from '@/components/Main/Chart'
+import FollowersChart from '@/components/Main/FollowersChart'
 import BalanceInput from '@/components/Main/BalanceInput'
 
 export default {
   name: 'Main',
   components: {
     BalanceInput,
-    Chart,
+    FollowersChart,
     DifferenceBlock
   },
   data () {
     return {
-      days: 8,
+      days: 7,
       balance: '5000',
-      chartWidth: null,
-      chartHeight: null,
     }
-  },
-  methods: {
-    followersAmount
-  },
-  mounted () {
-    switch (this.$mq) {
-      case 'mobile':
-        this.chartWidth = document.querySelector('.container').clientWidth
-        this.chartHeight = 228
-        break
-      case 'laptop':
-        this.chartWidth = document.querySelector('.content').clientWidth
-        this.chartHeight = 283
-        break
-      case 'desktop':
-        this.chartWidth = document.querySelector('.content').clientWidth / 2
-        this.chartHeight = 283
-        break
-    }
-    this.$refs.chart.render()
   },
   computed: {
-    daysLabels () {
-      const result = []
-      for (let i = 0; i <= this.days; i++) {
-        result.push(`${i} день`)
-      }
-      return result
-    },
-    chartStyles () {
-      return {
-        position: 'relative',
-        height: `${this.chartHeight}px`,
-        width: `${this.chartWidth}px`
-      }
-    },
-    dataSets () {
-      return this.daysLabels.map((label, index, arr) => index === 0 || index === (arr.length - 1) ? null : this.followersAmount({
-        day: index,
-        balance: this.balance
-      })) //first label null for start from day 1, last label null for some free space on the right
-    },
-    totalFollowersAmount () {
-      return this.dataSets[this.dataSets.length - 2]
-    },
+    ...mapState('followers', {
+      totalFollowersAmount: 'followersAmount'
+    }),
     totalViewing () {
       return Math.round(this.totalFollowersAmount * (Math.random() + 10))
-    },
-    chartData () {
-      return {
-        labels: this.daysLabels,
-        datasets: [{
-          data: this.dataSets
-        }]
-      }
     }
   }
 }
@@ -117,35 +75,126 @@ export default {
 
 <style lang="scss" scoped>
 .main {
+  padding: 50px 0;
+
+  @media ($laptop) {
+    padding: 80px 0 50px 0;
+  }
+
+  @media ($desktop) {
+    padding: 100px 0 100px 0;
+  }
+
   &__header {
     margin-top: 0;
     margin-bottom: 20px;
     text-align: center;
+    grid-area: header;
+    @media ($desktop) {
+       margin-bottom: 60px;
+    }
   }
 
   &__description {
     margin-top: 0;
     margin-bottom: 30px;
+    grid-area: description;
+
+    @media ($desktop) {
+      margin-bottom: 0;
+    }
   }
 
   &__chart {
+    grid-area: chart;
 
+    @media ($laptop) {
+      margin-top: 30px;
+    }
+    @media ($desktop) {
+      margin-top: 40px;
+    }
   }
 
   &__balance-input {
     margin-bottom: 16px;
+    grid-area: balance-input;
+
+    @media ($laptop) {
+      margin-bottom: 0;
+    }
+
+    @media ($desktop) {
+      margin-top: 40px;
+    }
   }
 
   &__difference {
     margin-bottom: 16px;
+
+    @media ($laptop) {
+      margin-bottom: 0;
+    }
   }
 
   .difference {
     display: flex;
     justify-content: space-between;
+    grid-area: difference;
+
+    @media ($laptop) {
+      display: block;
+    }
+
+    @media ($desktop) {
+      display: flex;
+    }
 
     &__item {
       width: 47.8%;
+
+      @media ($laptop) {
+        width: 100%;
+        &:not(:last-child) {
+          margin-bottom: 22px;
+        }
+      }
+      @media ($desktop) {
+        width: 34.2%;
+        margin-bottom: 0;
+        &:first-child {
+          margin-left: auto;
+        }
+        &:not(&:last-child) {
+          margin-right: 24px;
+        }
+      }
+
+    }
+  }
+
+  &__bottom {
+    margin-top: 30px;
+    grid-area: bottom;
+  }
+
+  &__bottom-text {
+    margin: 0;
+    color: $black-minor;
+  }
+
+  &__content {
+    @media ($laptop) {
+      display: grid;
+      grid-template-areas: 'header header' 'description description' 'balance-input difference' 'chart chart' 'bottom .';
+      grid-template-columns: 57% 39.5%;
+      column-gap: 30px;
+    }
+
+    @media ($desktop) {
+      grid-template-areas: 'header header' 'description difference' 'balance-input chart' 'bottom chart';
+      grid-template-columns: 41% 48.6%;
+      column-gap: 10%;
     }
   }
 }

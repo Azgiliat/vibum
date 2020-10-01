@@ -6,10 +6,12 @@
   letter-spacing: 0em;
   text-align: center;
   color: $grey-body-landing;
+  font-size: 15px;
+  line-height: 25px;
 
-  &--15 {
-    font-size: 15px;
-    line-height: 25px;
+  @media ($laptop) {
+    line-height: 26px;
+    font-size: 16px;
   }
 }
 
@@ -20,10 +22,12 @@
   font-weight: 500;
   letter-spacing: 0em;
   text-align: center;
+  line-height: 26px;
+  font-size: 15px;
 
-  &--15 {
-    line-height: 26px;
-    font-size: 15px;
+  @media ($laptop) {
+    font-size: 18px;
+    line-height: 31px;
   }
 }
 
@@ -35,12 +39,15 @@
   letter-spacing: 0.02em;
   text-align: center;
   color: $black-main;
+  font-size: 32px;
+  line-height: 42px;
 
-  &--32 {
-    font-size: 32px;
-    line-height: 42px;
+  @media ($laptop) {
+    line-height: 50px;
+    font-size: 38px;
   }
 }
+
 //styleName: $m-cab-h3-mobile / 16 reg;
 .cab-h3 {
   font-family: $main-font;
@@ -49,10 +56,12 @@
   letter-spacing: 0.02em;
   text-align: left;
   color: $black-main;
+  font-size: 16px;
+  line-height: 20px;
 
-  &--16 {
-    font-size: 16px;
-    line-height: 20px;
+  @media ($laptop) {
+    line-height: 23px;
+    font-size: 18px;
   }
 }
 
@@ -63,12 +72,43 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-align: left;
+  font-size: 21px;
+  line-height: 26px;
 
-  &--21 {
-    font-size: 21px;
-    line-height: 26px;
+  @media ($laptop) {
+    font-size: 26px;
+    line-height: 28px;
   }
 }
+
+//styleName: $m-cab-body-main2 / 14;
+.cab-body-main {
+  font-family: $second-font;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+
+  @media ($laptop) {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+//styleName: $m-cab-text-reg-mobile / pt 15 reg;
+.cab-text-reg {
+  font-family: $main-font;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+
+
+
+
 
 
 

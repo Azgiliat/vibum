@@ -1,10 +1,11 @@
 $mobile-width: 414px;
 $laptop-width: 960px;
 $desktop-width: 1920px;
-$mobile: '(min-width: #{$mobile-width})';
-$laptop: '(min-width: #{$laptop-width})';
-$desktop: '(min-width: #{$desktop-width})';
+$mobile: 'min-width: #{$mobile-width}';
+$laptop: 'min-width: #{$laptop-width}';
+$desktop: 'min-width: #{$desktop-width}';
 $mobile-content-width: 90%;
+$laptop-content-width: 90%;
 //fonts
 $main-font: PT Sans;
 $second-font: Montserrat;
@@ -16,6 +17,7 @@ $violet-iris: #7045C4;
 $black-main: #212121;
 $black-metal: #323232;
 $black-text: #4B4B4B;
+$black-minor: #717171;
 $grey-minor: #E2E5EE;
 $grey-body-landing: #505361;
 

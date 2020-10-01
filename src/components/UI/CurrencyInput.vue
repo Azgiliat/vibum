@@ -4,9 +4,9 @@
       <use :xlink:href="`#${this.currency}`"/>
     </svg>
     <label class="currency-input__label">
-      <input type="phone" v-model="val" class="currency-input__input landing-body-first landing-body-first--15"/>
+      <input type="phone" v-model="val" class="currency-input__input landing-body-first landing-body-first"/>
     </label>
-    <p class="currency-input__currency-text landing-body-second .landing-body-second--15">
+    <p class="currency-input__currency-text landing-body-second">
       {{ currencyText }}
     </p>
   </div>
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     val: {
-      get() {
+      get () {
         return `${this.value}` /*.split('').reverse().map((symbol, index) => {
           if (index % 3 && index !== 0) {
             return symbol
@@ -37,7 +37,7 @@ export default {
           }
         }).reverse().join('')*/
       },
-      set(newVal) {
+      set (newVal) {
         this.$emit('update:value', newVal)
       }
     },
@@ -67,11 +67,21 @@ export default {
     min-height: 26px;
     fill: $violet-iris;
     margin-right: 16px;
+
+    @media ($laptop) {
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+    }
   }
 
   &__label {
     display: block;
     margin-right: 16px;
+
+    @media ($laptop) {
+      margin-right: 20px;
+    }
   }
 
   &__input {
@@ -87,6 +97,7 @@ export default {
       -webkit-appearance: none;
       margin: 0;
     }
+
     -moz-appearance: textfield;
   }
 

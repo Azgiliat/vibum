@@ -11,6 +11,11 @@ const req = require.context('@/assets/icons', true)
 req.keys().forEach(function (key) {
   req(key)
 })
+//directives
+const directives = require.context('@/directives', true)
+directives.keys().forEach(function (key) {
+  directives(key)
+})
 //fonts
 import '@/assets/css/fonts.scss'
 //normalize

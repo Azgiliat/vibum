@@ -1,9 +1,9 @@
 <template>
   <div class="difference-block">
-    <p class="difference-block__number cab-h1 cab-h1--21">
+    <p class="difference-block__number cab-h1">
       {{sign}}{{amount | separateOrder}}
     </p>
-    <p class="difference-block__text landing-body-first landing-body-first--15">
+    <p class="difference-block__text landing-body-first">
       <slot name="text" />
     </p>
   </div>
