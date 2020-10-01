@@ -1,5 +1,8 @@
 <template>
   <div class="followers-chart" v-resize="updateParams">
+    <span class="followers-chart__title cab-text-reg">
+            Подписчики
+    </span>
     <Chart ref="chart" :options="options" :chartData="chartData" :width="chartWidth" :height="chartHeight"
            @gradient="gradient = $event"
            :styles="chartStyles"/>
@@ -9,7 +12,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import Chart from '@/components/UI/Chart'
-import followersAmount from '@/utils/followersAmount'
+import calcFollowersAmount from '@/utils/followersAmount'
 import { mainBlack, violetIris } from '@/assets/css/vars.scss'
 
 export default {
@@ -91,8 +94,8 @@ export default {
     ...mapMutations('followers', {
       setFollowersAmount: 'setFollowersAmount'
     }),
-    followersAmount,
-    updateParams () {
+    calcFollowersAmount,
+    updateParams (evt) {
       this.$refs.chart.makeGradient()
       switch (this.$mq) {
         case 'mobile':
@@ -104,6 +107,9 @@ export default {
             bottom: 0,
             left: 0
           }
+          if (typeof evt !== 'boolean') {
+            this.$refs.chart.render() //update not working as expected... so rerender
+          }
           break
         case 'laptop':
           this.chartWidth = document.querySelector('.content').clientWidth
@@ -111,8 +117,11 @@ export default {
           this.options.layout.padding = {
             top: 37,
             right: 39,
-            bottom: 48 ,
+            bottom: 48,
             left: 60
+          }
+          if (typeof evt !== 'boolean') {
+            this.$refs.chart.render()
           }
           break
         case 'desktop':
@@ -124,14 +133,22 @@ export default {
             bottom: 37,
             left: 20
           }
+          if (typeof evt !== 'boolean') {
+            this.$refs.chart.render()
+          }
           break
       }
     }
   },
   mounted () {
-    this.updateParams()
+    this.updateParams(true)
     this.$refs.chart.render()
     this.setFollowersAmount(this.totalFollowersAmount)
+  },
+  watch: {
+    balance () {
+      this.setFollowersAmount(this.totalFollowersAmount)
+    }
   },
   computed: {
     daysLabels () {
@@ -149,16 +166,13 @@ export default {
       }
     },
     dataSets () {
-      return this.daysLabels.map((label, index) => index === 0 ? null : this.followersAmount({
+      return this.daysLabels.map((label, index) => index === 0 ? null : this.calcFollowersAmount({
         day: index,
         balance: this.balance
       })) //first label null for start from day 1, last label null for some free space on the right
     },
     totalFollowersAmount () {
-      return this.dataSets[this.dataSets.length - 2]
-    },
-    totalViewing () {
-      return Math.round(this.totalFollowersAmount * (Math.random() + 10))
+      return this.dataSets[this.dataSets.length - 1]
     },
     chartData () {
       return {
@@ -182,9 +196,19 @@ export default {
 
 <style lang="scss" scoped>
 .followers-chart {
+  position: relative;
   @media ($laptop) {
     border-radius: 6px;
     border: 1px solid $grey-minor;
+  }
+
+  &__title {
+    position: absolute;
+    top: -28px;
+    left: 0;
+    @media ($laptop) {
+      display: none;
+    }
   }
 }
 </style>

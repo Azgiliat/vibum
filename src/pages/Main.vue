@@ -28,9 +28,6 @@
       </div>
       <div class="main__chart">
         <div class="container">
-          <span class="main__chart-title .cab-text-reg">
-            Подписчики
-          </span>
           <FollowersChart :days="days" :balance="balance "/>
         </div>
       </div>
@@ -44,7 +41,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 import DifferenceBlock from '@/components/UI/DifferenceBlock'
 import FollowersChart from '@/components/Main/FollowersChart'
 import BalanceInput from '@/components/Main/BalanceInput'
@@ -59,12 +56,12 @@ export default {
   data () {
     return {
       days: 7,
-      balance: '5000',
     }
   },
   computed: {
     ...mapState('followers', {
-      totalFollowersAmount: 'followersAmount'
+      totalFollowersAmount: 'followersAmount',
+      balance: 'balance'
     }),
     totalViewing () {
       return Math.round(this.totalFollowersAmount * (Math.random() + 10))
@@ -91,7 +88,7 @@ export default {
     text-align: center;
     grid-area: header;
     @media ($desktop) {
-       margin-bottom: 60px;
+      margin-bottom: 60px;
     }
   }
 
@@ -107,8 +104,16 @@ export default {
 
   &__chart {
     grid-area: chart;
+    border-top: 1px solid $grey-main1;
+    border-bottom: 1px solid $grey-main1;
+    padding-top: 50px;
+    padding-bottom: 20px;
 
     @media ($laptop) {
+      border-top: none;
+      border-bottom: none;
+      padding-top: 0;
+      padding-bottom: 0;
       margin-top: 30px;
     }
     @media ($desktop) {

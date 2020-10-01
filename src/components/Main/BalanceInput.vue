@@ -4,12 +4,13 @@
       <p class="balance-input__text cab-h3">
         Введите сумму, чтобы увидеть прогноз по подписчикам и просмотрам
       </p>
-      <CurrencyInput :currency="currency" :value="balance" @update:value="$emit('update:balance', $event)"/>
+      <CurrencyInput :currency="currency" :value.sync="balance"/>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import CurrencyInput from '@/components/UI/CurrencyInput'
 
 export default {
@@ -22,10 +23,24 @@ export default {
       type: String,
       require: false,
       default: 'RUB'
-    },
+    }
+  },
+  methods: {
+    ...mapMutations('followers', {
+      setBalance: 'setBalance'
+    })
+  },
+  computed: {
+    ...mapState('followers', {
+      storeBalance: 'balance'
+    }),
     balance: {
-      type: String,
-      require: true
+      get() {
+        return this.storeBalance
+      },
+      set(newVal) {
+        this.setBalance(newVal)
+      }
     }
   }
 }
