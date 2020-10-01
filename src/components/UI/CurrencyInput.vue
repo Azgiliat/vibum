@@ -29,16 +29,16 @@ export default {
   computed: {
     val: {
       get () {
-        return `${this.value}` /*.split('').reverse().map((symbol, index) => {
+        return `${this.value}`.split('').reverse().map((symbol, index) => {
           if (index % 3 && index !== 0) {
             return symbol
           } else {
             return `${symbol} `
           }
-        }).reverse().join('')*/
+        }).reverse().join('')
       },
       set (newVal) {
-        this.$emit('update:value', newVal)
+        this.$emit('update:value', newVal.replace(/[ ]/g, ''))
       }
     },
     currencyText () {
