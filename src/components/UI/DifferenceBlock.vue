@@ -15,7 +15,7 @@ export default {
   filters: {
     separateOrder(str) {
       return `${str}`.split('').reverse().map((symbol, index) => {
-        if (index % 3 && index !== 0) {
+        if (index % 3 || index === 0) {
           return symbol
         } else {
           return `${symbol} `

@@ -30,7 +30,7 @@ export default {
     val: {
       get () {
         return `${this.value}`.split('').reverse().map((symbol, index) => {
-          if (index % 3 && index !== 0) {
+          if (index % 3 || index === 0) {
             return symbol
           } else {
             return `${symbol} `
