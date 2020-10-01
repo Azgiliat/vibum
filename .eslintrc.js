@@ -13,7 +13,7 @@ module.exports = {
     semi: [2, 'never'],
     quotes: [2, 'single'],
     'vue/return-in-computed-property': ['off', {
-      "treatUndefinedAsUnspecified": false
+      'treatUndefinedAsUnspecified': false
     }]
   }
 }
