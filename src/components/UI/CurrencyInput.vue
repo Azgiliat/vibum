@@ -38,7 +38,8 @@ export default {
         }).reverse().join('')
       },
       set (newVal) {
-        this.$emit('update:value', newVal.replace(/[ ]/g, ''))
+        this.$emit('update:value', newVal.replace(/[ ]/g, '').replace(/\D+/g, ''))
+        this.$forceUpdate() // for remove all non digits from input
       }
     },
     currencyText () {
